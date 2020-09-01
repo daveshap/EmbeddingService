@@ -57,7 +57,8 @@ INFO:werkzeug:127.0.0.1 - - [01/Sep/2020 16:04:48] "[37mPOST / HTTP/1.1[0m" 20
 ['This is a sentence', 'this is a second sentence']
 INFO:werkzeug:127.0.0.1 - - [01/Sep/2020 16:04:52] "[37mPOST / HTTP/1.1[0m" 200 -
 ['This is a sentence', 'this is a second sentence']
-INFO:werkzeug:127.0.0.1 - - [01/Sep/2020 16:04:56] "[37mPOST / HTTP/1.1[0m" 200 -```
+INFO:werkzeug:127.0.0.1 - - [01/Sep/2020 16:04:56] "[37mPOST / HTTP/1.1[0m" 200 -
+```
 
 How the client looks:
 
@@ -82,4 +83,5 @@ C:\USE_microservice>python client.py
             '-0.04068242385983467, 0.08653835952281952]'}]
 Total time: 0.017948627471923828
 
-C:\USE_microservice>```
+C:\USE_microservice>
+```

@@ -9,8 +9,10 @@ app = flask.Flask('encoder')
 @app.route('/', methods=['post'])
 def home():
     payload = request.json  # payload should be like ["asdfasdf","asdfasdf"]
+    print(payload)
     embeddings = embed(payload)
-    return flask.Response(json.dumps(embeddings), mimetype='application/json')
+    result = [{'vector':str(i.numpy().tolist()),'string':j} for i,j in zip(embeddings, payload)]
+    return flask.Response(json.dumps(result), mimetype='application/json')
 
 
 if __name__ == '__main__':

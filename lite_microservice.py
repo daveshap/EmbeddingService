@@ -2,7 +2,9 @@ import flask
 import logging
 import json
 from flask import request
+import tensorflow as tf
 import tensorflow_hub as hub
+import tensorflow_text as text  # Registers the ops.
 
 
 log = logging.getLogger('werkzeug')
@@ -12,14 +14,16 @@ app = flask.Flask('encoder')
 
 @app.route('/', methods=['post'])
 def home():
-    payload = request.json  # payload should be like ["asdfasdf","asdfasdf"]
+    payload = request.json  # payload should be like "asdfasdf"
     print(payload)
-    embeddings = embed(payload)
-    result = [{'vector':str(i.numpy().tolist()),'string':j} for i,j in zip(embeddings, payload)]
+    embeddings = encoder(list(payload))
+    result = str(embeddings[0].numpy().tolist()[0])
+    #print(result)
     return flask.Response(json.dumps(result), mimetype='application/json')
 
 
 if __name__ == '__main__':
-    #app.run(host='0.0.0.0', port=443, ssl_context='adhoc')
-    embed = hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
+    hub_url = "https://tfhub.dev/google/universal-sentence-encoder-lite/2"
+    encoder = hub.load(hub_url)
+    #encoder = hub.KerasLayer(hub_url)
     app.run(host='0.0.0.0', port=999)

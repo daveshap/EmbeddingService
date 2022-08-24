@@ -5,6 +5,9 @@ from flask import request
 import tensorflow_hub as hub
 
 
+embedding_port = int(os.getenv('EMBEDDING_PORT', 999))
+
+
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 app = flask.Flask('encoder')
@@ -22,4 +25,4 @@ def home():
 if __name__ == '__main__':
     #embed = hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
     embed = hub.load("https://tfhub.dev/google/universal-sentence-encoder-large/5")  # USEv5 is about 100x faster than 4
-    app.run(host='0.0.0.0', port=999)
+    app.run(host='0.0.0.0', port=embedding_port)
